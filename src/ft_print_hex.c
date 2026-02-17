@@ -6,7 +6,7 @@
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 00:02:26 by dserrano          #+#    #+#             */
-/*   Updated: 2026/02/18 00:10:51 by dserrano         ###   ########.fr       */
+/*   Updated: 2026/02/18 00:28:42 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_print_hex(va_list args, char chr)
 {
-	unsigned	num;
+	unsigned int	num;
 
 	num = va_arg(args, unsigned);
 	if ('x' == chr)
