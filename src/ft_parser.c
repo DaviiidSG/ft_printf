@@ -6,7 +6,7 @@
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 15:12:04 by dserrano          #+#    #+#             */
-/*   Updated: 2026/02/17 18:46:59 by dserrano         ###   ########.fr       */
+/*   Updated: 2026/02/17 23:53:19 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_parser(const char *str, int *i, va_list args)
 	else if ('d' == *(str + *i) || 'i' == *(str + *i))
 		return (ft_print_int(args));
 	else if ('u' == *(str + *i))
-		return (1);
+		return (ft_print_uint(args));
 	else if ('x' == *(str + *i) || 'X' == *(str + *i))
 		return (1);
 	else if ('%' == *(str + *i))
