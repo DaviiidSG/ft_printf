@@ -6,7 +6,7 @@
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 22:33:09 by dserrano          #+#    #+#             */
-/*   Updated: 2026/02/17 23:53:10 by dserrano         ###   ########.fr       */
+/*   Updated: 2026/02/18 00:08:25 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int	ft_putnbr_base(unsigned long long num, char *base_template,
 		unsigned int base, unsigned int sign);
 int	ft_print_int(va_list args);
 int	ft_print_uint(va_list args);
+int	ft_print_hex(va_list args, char chr);
 
 #endif
