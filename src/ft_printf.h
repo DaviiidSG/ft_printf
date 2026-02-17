@@ -6,7 +6,7 @@
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 22:33:09 by dserrano          #+#    #+#             */
-/*   Updated: 2026/02/17 05:18:43 by dserrano         ###   ########.fr       */
+/*   Updated: 2026/02/17 16:12:19 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	ft_parser(const char *str, int *i, va_list args);
 int	ft_print_char(va_list args);
 int	ft_print_str(va_list args);
 int	ft_print_ptr(va_list args);
-int	ft_putnbr_base(unsigned long long num, int base);
+int	ft_putnbr_base(unsigned long long num, char *base_template,
+		unsigned int base, unsigned int sign);
 
 #endif
