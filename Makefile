@@ -14,7 +14,7 @@ PRINTF_H = ft_printf.h
 # Source and object files
 SRC = ft_printf.c ft_search_specifier.c ft_parser.c\
 	ft_print_char.c ft_print_str.c ft_print_ptr.c\
-	ft_putnbr_base.c
+	ft_putnbr_base.c ft_print_int.c
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
