@@ -9,7 +9,8 @@ RM = rm -rf
 SRC_DIR = ./src
 OBJ_DIR = ./objs
 LIBFT_DIR = ./libft
-PRINTF_H = ft_printf.h
+LIBFT = $(LIBFT_DIR)/libft.a
+PRINTF_H = $(SRC_DIR)/ft_printf.h
 
 # Source and object files
 SRC = ft_printf.c ft_search_specifier.c ft_parser.c \
@@ -30,35 +31,33 @@ RESET = \033[0m
 .PHONY: all clean fclean re
 
 # Default rule to compile
-all: libft_compile $(NAME)
-	@echo "$(GREEN) Listo $(RESET)"
-
-# Compile libft.a using its own makefile
-libft_compile:
-	@echo "$(CYAN) Compilando libft... $(RESET)"
-	@make -sC $(LIBFT_DIR)
+all: $(NAME)
+	@echo "$(GREEN)Ready$(RESET)"
 
 # Creates ft_printf library
-$(NAME): $(OBJ)
-	@echo "$(CYAN) Compilando archivos objeto y empaquetandolos en $(NAME)... $(RESET)"
-	@$(AR) $@ $^
+$(NAME): $(LIBFT) $(OBJ)
+	@$(AR) $@ $(OBJ)
+
+$(LIBFT):
+	@echo "$(CYAN)Compiling...$(RESET)"
+	@make -sC $(LIBFT_DIR)
+	@cp $(LIBFT) $(NAME)
+	@make fclean -sC $(LIBFT_DIR)
 
 # Creates .o files inside a dir
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(SRC_DIR)/$(PRINTF_H)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(PRINTF_H)
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@ -I$(SRC_DIR) -I$(LIBFT_DIR)
 
 # Delete .o files
 clean:
-	@echo "$(YELLOW) Borrando archivos objeto... $(RESET)"
+	@echo "$(YELLOW)Deleting objects...$(RESET)"
 	@$(RM) $(OBJ_DIR)
-	@make clean -sC $(LIBFT_DIR)
 
 # Delete .o and .a files
 fclean:
-	@echo "$(RED) Borrando archivos objeto y librerias... $(RESET)"
+	@echo "$(RED)Deleting objects and libraries...$(RESET)"
 	@$(RM) $(NAME) $(OBJ_DIR)
-	@make fclean -sC $(LIBFT_DIR)
 
 # Remake the entire project
 re: fclean all
