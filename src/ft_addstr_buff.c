@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_str.c                                     :+:      :+:    :+:   */
+/*   ft_addstr_buff.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/16 16:04:56 by dserrano          #+#    #+#             */
-/*   Updated: 2026/02/24 17:10:18 by dserrano         ###   ########.fr       */
+/*   Created: 2026/02/24 17:04:22 by dserrano          #+#    #+#             */
+/*   Updated: 2026/03/02 14:26:49 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	ft_print_str(t_buff *buff, va_list args)
+int	ft_addstr_buff(t_buff *buff, char const *str)
 {
-	char	*str;
-
-	str = va_arg(args, char *);
-	if (!str)
-		str = "(null)";
-	return (ft_addstr_buff(buff, str));
+	while (*str)
+	{
+		if (-1 == ft_add_buff(*str, buff))
+			return (-1);
+		str++;
+	}
+	return (0);
 }

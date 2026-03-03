@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_str.c                                     :+:      :+:    :+:   */
+/*   ft_add_buff.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/16 16:04:56 by dserrano          #+#    #+#             */
-/*   Updated: 2026/02/24 17:10:18 by dserrano         ###   ########.fr       */
+/*   Created: 2026/02/20 14:13:52 by dserrano          #+#    #+#             */
+/*   Updated: 2026/02/24 17:01:47 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	ft_print_str(t_buff *buff, va_list args)
+int	ft_add_buff(char chr, t_buff *buff)
 {
-	char	*str;
-
-	str = va_arg(args, char *);
-	if (!str)
-		str = "(null)";
-	return (ft_addstr_buff(buff, str));
+	if (buff->data_len + 1 == buff->size)
+		if (-1 == ft_increment_buff(buff))
+			return (-1);
+	buff->data[buff->data_len] = chr;
+	buff->data_len++;
+	return (buff->data_len);
 }

@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_str.c                                     :+:      :+:    :+:   */
+/*   ft_tostr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/16 16:04:56 by dserrano          #+#    #+#             */
-/*   Updated: 2026/02/24 17:10:18 by dserrano         ###   ########.fr       */
+/*   Created: 2026/02/25 13:09:45 by dserrano          #+#    #+#             */
+/*   Updated: 2026/02/26 17:54:32 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	ft_print_str(t_buff *buff, va_list args)
+int	ft_tostr(unsigned long long n, t_buff *buff,
+		char *base_template, unsigned int base)
 {
-	char	*str;
+	unsigned long long	num;
 
-	str = va_arg(args, char *);
-	if (!str)
-		str = "(null)";
-	return (ft_addstr_buff(buff, str));
+	if (n >= base)
+	{
+		if (-1 == ft_tostr(n / base, buff, base_template, base))
+			return (-1);
+	}
+	num = n % base;
+	if (-1 == ft_add_buff(base_template[num], buff))
+		return (-1);
+	return (0);
 }

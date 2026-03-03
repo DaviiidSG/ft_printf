@@ -10,13 +10,13 @@ SRC_DIR = ./src
 OBJ_DIR = ./objs
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
-PRINTF_H = $(SRC_DIR)/ft_printf.h
+PRINTF_H = ft_printf.h
 
 # Source and object files
-SRC = ft_printf.c ft_search_specifier.c ft_parser.c \
-	ft_print_char.c ft_print_str.c ft_print_ptr.c \
-	ft_putnbr_base.c ft_print_int.c ft_print_uint.c \
-	ft_print_hex.c ft_print_percent.c
+SRC = ft_printf.c ft_create_buff.c ft_add_buff.c ft_addstr_buff.c \
+	ft_increment_buff.c ft_parse_specifier.c ft_print_char.c ft_print_str.c \
+	ft_print_ptr.c ft_tostr.c ft_print_int.c ft_print_uint.c \
+	ft_print_hex.c
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 

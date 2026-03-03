@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_percent.c                                 :+:      :+:    :+:   */
+/*   ft_increment_buff.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 00:22:21 by dserrano          #+#    #+#             */
-/*   Updated: 2026/02/18 00:23:31 by dserrano         ###   ########.fr       */
+/*   Created: 2026/02/20 14:41:55 by dserrano          #+#    #+#             */
+/*   Updated: 2026/02/20 17:00:11 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-int	ft_print_percent(void)
+int	ft_increment_buff(t_buff *buff)
 {
-	return (write(1, "%", 1));
+	char	*new_data;
+
+	new_data = ft_calloc(buff->size * 2, sizeof(*(buff->data)));
+	if (!new_data)
+		return (-1);
+	buff->size *= 2;
+	ft_strlcpy(new_data, buff->data, buff->size);
+	free(buff->data);
+	buff->data = new_data;
+	return (buff->size);
 }

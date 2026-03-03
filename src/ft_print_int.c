@@ -6,24 +6,30 @@
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 18:36:20 by dserrano          #+#    #+#             */
-/*   Updated: 2026/02/17 18:46:53 by dserrano         ###   ########.fr       */
+/*   Updated: 2026/03/03 21:34:43 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-int	ft_print_int(va_list args)
+int	ft_print_int(t_buff *buff, va_list args)
 {
-	int	num;
-	int	sign;
+	int		num;
 
 	num = va_arg(args, int);
 	if (-2147483648 == num)
-		return (write(1, "-2147483648", 11));
-	if (num < 0)
+	{
+		if (-1 == ft_addstr_buff(buff, "-2147483648"))
+			return (-1);
+		return (0);
+	}
+	else if (num < 0)
 	{
 		num = -num;
-		sign = 1;
+		if (-1 == ft_add_buff('-', buff))
+			return (-1);
 	}
-	return (ft_putnbr_base(num, "0123456789", 10, sign));
+	if (-1 == ft_tostr(num, buff, "0123456789", 10))
+		return (-1);
+	return (0);
 }
