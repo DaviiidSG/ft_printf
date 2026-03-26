@@ -6,7 +6,7 @@
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 22:55:43 by dserrano          #+#    #+#             */
-/*   Updated: 2026/03/03 20:58:38 by dserrano         ###   ########.fr       */
+/*   Updated: 2026/03/26 17:00:59 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ static int	ft_search_specifier(const char *str, t_buff *buff, va_list args)
 			if (*(str + 1))
 				str++;
 			else
-				return (-1);
+			{
+				if (-1 == ft_add_buff(*str, buff))
+					return (-1);
+				return (0);
+			}
 			if (-1 == ft_parse_specifier(*str, buff, args))
 				return (-1);
 		}
@@ -34,8 +38,6 @@ static int	ft_search_specifier(const char *str, t_buff *buff, va_list args)
 	}
 	return (0);
 }
-// TODO: cerrar los args en error
-// TODO: realizar más pruebas del printf
 
 int	ft_printf(char const *str, ...)
 {
