@@ -34,29 +34,30 @@ RESET = \033[0m
 all: $(NAME)
 	@echo "$(GREEN)Ready$(RESET)"
 
-# Creates ft_printf library
+# Creates libftprintf library
 $(NAME): $(LIBFT) $(OBJ)
+	@cp $(LIBFT) $(NAME)
 	@$(AR) $@ $(OBJ)
 
 $(LIBFT):
 	@echo "$(CYAN)Compiling...$(RESET)"
 	@make -sC $(LIBFT_DIR)
-	@cp $(LIBFT) $(NAME)
-	@make fclean -sC $(LIBFT_DIR)
 
 # Creates .o files inside a dir
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(PRINTF_H)
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@ -I$(SRC_DIR) -I$(LIBFT_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Delete .o files
 clean:
 	@echo "$(YELLOW)Deleting objects...$(RESET)"
+	@make clean -sC $(LIBFT_DIR)
 	@$(RM) $(OBJ_DIR)
 
 # Delete .o and .a files
 fclean:
 	@echo "$(RED)Deleting objects and libraries...$(RESET)"
+	@make fclean -sC $(LIBFT_DIR)
 	@$(RM) $(NAME) $(OBJ_DIR)
 
 # Remake the entire project
