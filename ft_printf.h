@@ -6,14 +6,14 @@
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 22:33:09 by dserrano          #+#    #+#             */
-/*   Updated: 2026/03/03 21:40:01 by dserrano         ###   ########.fr       */
+/*   Updated: 2026/04/03 18:06:06 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "../libft/libft.h"
+# include "libft/libft.h"
 # include <stdarg.h>
 
 typedef struct s_buff
