@@ -6,7 +6,7 @@
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 22:55:43 by dserrano          #+#    #+#             */
-/*   Updated: 2026/04/03 18:07:32 by dserrano         ###   ########.fr       */
+/*   Updated: 2026/04/09 18:56:35 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,7 @@ int	ft_printf(char const *str, ...)
 		return (-1);
 	}
 	va_end(args);
-	if (-1 == write(1, buffer.data, buffer.data_len))
-	{
-		free(buffer.data);
-		return (-1);
-	}
+	write(1, buffer.data, buffer.data_len);
 	free(buffer.data);
 	return (buffer.data_len);
 }
