@@ -28,7 +28,7 @@ My implementation supports the following conversions:
 		}
 3. Link your file to the library and compile: `cc -Wall -Wextra -Werror main.c libftprintf.a -o test`
 # Resources
-- [La función printf](https://www.it.uc3m.es/pbasanta/asng/course_notes/input_output_printf_es.html)
+- [Printf function](https://www.it.uc3m.es/pbasanta/asng/course_notes/input_output_printf_es.html)
 - C Programming A Modern Approach 2nd edition. K. N. King
 - Man pages
 ## Use of AI
