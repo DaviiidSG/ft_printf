@@ -6,7 +6,7 @@
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 22:55:43 by dserrano          #+#    #+#             */
-/*   Updated: 2026/04/09 18:56:35 by dserrano         ###   ########.fr       */
+/*   Updated: 2026/04/09 19:07:19 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_printf(char const *str, ...)
 	if (!str)
 		return (-1);
 	va_start(args, str);
-	if (-1 == ft_create_buff(&buffer, 64))
+	if (-1 == ft_create_buff(&buffer))
 	{
 		va_end(args);
 		return (-1);
