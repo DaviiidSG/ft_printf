@@ -6,14 +6,11 @@
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 22:55:43 by dserrano          #+#    #+#             */
-/*   Updated: 2026/04/11 13:35:33 by dserrano         ###   ########.fr       */
+/*   Updated: 2026/04/11 19:52:00 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_internal.h"
-
-//! Cuando encuentra una conversión inválida o incompleta como "%t" ó "%" retorna error
-//! Si falla un write retornar error inmediatamente
 
 int	ft_printf(char const *str, ...)
 {
@@ -22,12 +19,16 @@ int	ft_printf(char const *str, ...)
 
 	if (!str)
 		return (-1);
-	buff_reset(&buffer);
+	buff_init(&buffer);
 	va_start(args, str);
 	parse_str(str, &buffer, args);
 	va_end(args);
 	if (buffer.err)
 		return (-1);
-	write(1, buffer.data, buffer.index);
+	if (buffer.index)
+	{
+		if (-1 == write(1, buffer.data, buffer.index))
+			return (-1);
+	}
 	return (buffer.total_len);
 }

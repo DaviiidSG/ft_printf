@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tostr.c                                         :+:      :+:    :+:   */
+/*   insert_uint.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 13:09:45 by dserrano          #+#    #+#             */
-/*   Updated: 2026/02/26 17:54:32 by dserrano         ###   ########.fr       */
+/*   Created: 2026/02/17 23:53:42 by dserrano          #+#    #+#             */
+/*   Updated: 2026/04/11 19:17:22 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf_internal.h"
 
-int	ft_tostr(unsigned long long n, t_buff *buff,
-		char *base_template, unsigned int base)
+void	insert_uint(t_buff *buff, va_list args)
 {
-	unsigned long long	num;
+	unsigned int	num;
 
-	if (n >= base)
-	{
-		if (-1 == ft_tostr(n / base, buff, base_template, base))
-			return (-1);
-	}
-	num = n % base;
-	if (-1 == ft_add_buff(base_template[num], buff))
-		return (-1);
-	return (0);
+	num = va_arg(args, unsigned);
+	tostr(num, buff, "0123456789", 10);
 }
