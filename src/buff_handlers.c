@@ -6,7 +6,7 @@
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 14:13:52 by dserrano          #+#    #+#             */
-/*   Updated: 2026/04/11 20:49:40 by dserrano         ###   ########.fr       */
+/*   Updated: 2026/04/13 23:48:44 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	buff_init(t_buff *buff)
 
 static void	flush(t_buff *buff)
 {
-	ssize_t	bytes;
+	int	bytes;
 
 	bytes = write(1, buff->data, buff->index);
 	if (-1 == bytes)

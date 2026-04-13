@@ -8,7 +8,7 @@ RM = rm -rf
 # File paths
 SRC_DIR = ./src
 OBJ_DIR = ./objs
-HEADERS = $(SRC_DIR)/ft_printf.h $(SRC_DIR)/ft_printf_internal.h
+HEADERS = ft_printf.h $(SRC_DIR)/ft_printf_internal.h
 
 # Source files
 SRC = ft_printf.c buff_handlers.c parser.c insert_char.c insert_str.c\

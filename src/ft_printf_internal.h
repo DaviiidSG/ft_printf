@@ -6,15 +6,16 @@
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 19:23:33 by dserrano          #+#    #+#             */
-/*   Updated: 2026/04/11 21:03:07 by dserrano         ###   ########.fr       */
+/*   Updated: 2026/04/13 23:56:56 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_INTERNAL_H
 # define FT_PRINTF_INTERNAL_H
-# define BUFF_SIZE 1
+# define BUFF_SIZE 1024
 
-# include "ft_printf.h"
+# include <stdarg.h>
+# include <unistd.h>
 
 typedef struct s_buff
 {
