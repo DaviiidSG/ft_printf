@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   insert_uint.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/14 08:46:15 by dserrano          #+#    #+#             */
-/*   Updated: 2026/01/22 15:38:32 by dserrano         ###   ########.fr       */
+/*   Created: 2026/02/17 23:53:42 by dserrano          #+#    #+#             */
+/*   Updated: 2026/04/11 19:17:22 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf_internal.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+void	insert_uint(t_buff *buff, va_list args)
 {
-	unsigned char	*dest;
-	size_t			i;
+	unsigned int	num;
 
-	dest = (unsigned char *)s;
-	i = 0;
-	while (i < n)
-	{
-		dest[i] = (unsigned char)c;
-		i++;
-	}
-	return (s);
+	num = va_arg(args, unsigned);
+	tostr(num, buff, "0123456789", 10);
 }

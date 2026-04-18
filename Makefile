@@ -1,6 +1,6 @@
 # Config
 NAME = libftprintf.a
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -rf
@@ -8,15 +8,11 @@ RM = rm -rf
 # File paths
 SRC_DIR = ./src
 OBJ_DIR = ./objs
-LIBFT_DIR = ./libft
-LIBFT = $(LIBFT_DIR)/libft.a
-PRINTF_H = ft_printf.h
+HEADERS = ft_printf.h $(SRC_DIR)/ft_printf_internal.h
 
-# Source and object files
-SRC = ft_printf.c ft_create_buff.c ft_add_buff.c ft_addstr_buff.c \
-	ft_increment_buff.c ft_parse_specifier.c ft_print_char.c ft_print_str.c \
-	ft_print_ptr.c ft_tostr.c ft_print_int.c ft_print_uint.c \
-	ft_print_hex.c
+# Source files
+SRC = ft_printf.c buff_handlers.c parser.c insert_char.c insert_str.c\
+	insert_ptr.c insert_int.c insert_uint.c insert_hex.c
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
@@ -32,33 +28,28 @@ RESET = \033[0m
 
 # Default rule to compile
 all: $(NAME)
-	@echo "$(GREEN)Ready$(RESET)"
 
 # Creates libftprintf library
-$(NAME): $(LIBFT) $(OBJ)
-	@cp $(LIBFT) $(NAME)
+$(NAME): $(OBJ)
+	@echo "$(CYAN)Creating $(NAME)$(RESET)"
 	@$(AR) $@ $(OBJ)
-
-$(LIBFT):
-	@echo "$(CYAN)Compiling...$(RESET)"
-	@make -sC $(LIBFT_DIR)
+	@echo "$(GREEN)Ready$(RESET)"
 
 # Creates .o files inside a dir
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(PRINTF_H)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	@mkdir -p $(OBJ_DIR)
+	@echo "$(CYAN)Compiling $< $(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Delete .o files
 clean:
 	@echo "$(YELLOW)Deleting objects...$(RESET)"
-	@make clean -sC $(LIBFT_DIR)
 	@$(RM) $(OBJ_DIR)
 
 # Delete .o and .a files
-fclean:
-	@echo "$(RED)Deleting objects and libraries...$(RESET)"
-	@make fclean -sC $(LIBFT_DIR)
-	@$(RM) $(NAME) $(OBJ_DIR)
+fclean: clean
+	@echo "$(RED)Deleting library...$(RESET)"
+	@$(RM) $(NAME)
 
 # Remake the entire project
 re: fclean all

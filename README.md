@@ -33,18 +33,12 @@ My implementation supports the following conversions:
 - Man pages
 ## Use of AI
 In this project, AI was used to improve the README file.
-# Algorithm and data structure
-## Data Structure: Auto-Grow Dynamic Buffer
-To manage the output, I have implemented a custom data structure that acts as a dynamic buffer. This structure contains:
-- `char *data`: The pointer to the string's content.
-- `size_t data_len`: The current length of the stored characters.
-- `size_t size`: The current total buffer capacity.
-
-This approach allows all write operations to be grouped into a single final call to `write`. Storing the data in memory before printing it drastically **reduces the number of system calls**, improving the function's overall performance.
-## Memory Management Algorithm: Resizing Strategy
-Every time the buffer reaches its maximum capacity, the algorithm allocates a new block of memory that is twice the size of the previous one. The existing data is then copied, the old memory is freed, and the operation continues.
+# Algorithm and project structure
+## Internal Buffer
+To handle the output, I implemented a fixed-size internal buffer that stores the parsed string and prints it to the console when finished. If the buffer fills up, its contents are printed to the console, and the data it contains is overwritten by the rest of the string.
+This approach minimizes `write` operations as much as possible. Storing the data in memory before printing it **drastically reduces the number of system calls**, which improves the function's overall performance.
 ## Execution Flow and Parsing
 The process is divided into three distinct stages:
-1. **Scanning**: The format string is scanned. Ordinary characters are added directly to the dynamic buffer.
+1. **Scanning**: The format string is scanned. Ordinary characters are added directly to the buffer.
 2. **Parsing**: When a `%` is detected, the flow is redirected to a parsing function that evaluates the next character. If the specifier is valid, the conversion is performed and the result is appended to the buffer; if it is invalid, it is treated as a literal character to ensure the function’s robustness.
-3. **Completion**: Once the entire string has been processed, the buffer is flushed to the console, all dynamic memory used is released, and the variable arguments are closed using `va_end`.
+3. **Completion**: Once the entire string has been processed, the buffer is flushed to the console and the variable arguments are closed using `va_end`.

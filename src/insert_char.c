@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   insert_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dserrano <dserrano@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/13 21:50:47 by dserrano          #+#    #+#             */
-/*   Updated: 2026/01/26 20:05:24 by dserrano         ###   ########.fr       */
+/*   Created: 2026/02/14 02:09:53 by dserrano          #+#    #+#             */
+/*   Updated: 2026/04/11 19:42:19 by dserrano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf_internal.h"
 
-int	ft_isprint(int c)
+void	insert_char(t_buff *buff, va_list args)
 {
-	return (c >= 32 && c <= 126);
+	int	c;
+
+	c = va_arg(args, int);
+	buff_insert(buff, c);
 }
